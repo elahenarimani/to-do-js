@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>to do list</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="./style.css" rel="stylesheet">
+</head>
+<body class="flex  justify-center items-center">
+  <div class=" w-[1000px] h-[100%]  flex flex-col ">
+    <div class="bg-purple-600 flex justify-around items-center rounded-t-[5px]  gap-[20px] text-center">
+      <p class="w-[20%]">نام</p>
+      <p class="w-[20%]">نام خانوادگی</p>
+      <p class="w-[20%]">موبایل </p>
+      <p class="w-[20%]">ایمیل</p>
+      <p class="w-[20%]">عملیات</p>
+    </div>
+    <div id="list-box" class="bg-white flex flex-col justify-evenly items-center gap-[20px] text-center">
+      <!-- <div class="w-[100%] h-[100%] inline-block">
+        <p class="w-[19.5%] ">`${}`</p>
+        <p class="w-[19.5%]">`${}`</p>
+        <p class="w-[19.5%]">0913</p>
+        <p class="w-[19.5%]">Email</p>
+        <button class="w-[20%]">2ta svg</button>
+      </div> -->
+    </div>
+    <div class="bg-orange  ">
+      <button class="bg-red-500 w-[100%] pb-0 rounded-b-[5px]" onclick=" modalControllerHandler()">
+        <p>برای اضافه کردن کاربر جدید کلیک کنید</p>
+      </button>
+    </div>
+  </div>
+  <div id="modal-wrapper-add"
+    class="hidden w-[100vw] h-[100vh]  fixed  top-0 left-0  bg-opacity-[80%] items-center justify-center bg-white">
+    <div>
+      <div class="max-w-[1500px] w-full ">
+        <div class=" bg-purple-500 flex justify-between items-center gap">
+          <button  class="w-[23px] h-[23px]" onclick="modalFinishAddBtnHandler()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="white" class="bi bi-x" viewBox="0 0 16 16">
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </button>
+          <p class=" text-center">کاربر جدید</p>
+          <p class="invisible">x</p>
+        </div>
+        <div class="px-[5px] flex flex-col justify-around gap-[10px] pt-[10px] pb-[20px]">
+          <div>
+            <p>نام:</p>
+            <input id="name"
+              class="w-[100%] h-[100%] px-[10px] border-[2px] border-[solid] divide-gray-600 rounded-[5px] outline-none ">
+          </div>
+          <div>
+            <p>نام خانوادگی:</p>
+            <input id="family"
+              class="w-[100%] h-[100%] px-[10px] border-[2px] border-[solid] divide-gray-600 rounded-[5px] outline-none ">
+          </div>
+          <div>
+            <p>ایمیل:</p>
+            <input id="email"
+              class="w-[100%] h-[100%] px-[10px] border-[2px] border-[solid] divide-gray-600 rounded-[5px] outline-none ">
+          </div>
+          <div>
+            <p>شماره موبایل:</p>
+            <input id="phone"
+              class="w-[100%] h-[100%] px-[10px] border-[2px] border-[solid] divide-gray-600 rounded-[5px] outline-none ">
+          </div>
+        </div>
+        <button class="w-full bg-pink-600 text-center" onclick="addBtnClickHandler()">افزودن</button>
+      </div>
+    </div>
+  </div>
+  <div id="modal-wrapper-edit"
+    class="hidden w-[100vw] h-[100vh]  fixed  top-0 left-0  bg-opacity-[80%] items-center justify-center bg-white">
+    <div>
+      <div class="max-w-[1500px] w-full ">
+        <div class=" bg-purple-500 flex justify-between items-center gap">
+          <button  class="w-[23px] h-[23px]" onclick="modalFinishEditBtnHandler()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="white" class="bi bi-x" viewBox="0 0 16 16">
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </button>
+          <p class=" text-center">ویرایش کاربر</p>
+          <p class="invisible">x</p>
+        </div>   
+          </button>
+        </div>
+        <div class="px-[5px] flex flex-col justify-around gap-[10px] pt-[10px] pb-[20px]">
+          <div>
+            <p>نام:</p>
+            <input id="edit-name"
+              class="w-[100%] h-[100%] px-[10px] border-[2px] border-[solid] divide-gray-600 rounded-[5px] outline-none ">
+          </div>
+          <div>
+            <p>نام خانوادگی:</p>
+            <input id="edit-family"
+              class="w-[100%] h-[100%] px-[10px] border-[2px] border-[solid] divide-gray-600 rounded-[5px] outline-none ">
+          </div>
+          <div>
+            <p>ایمیل:</p>
+            <input id="edit-email"
+              class="w-[100%] h-[100%] px-[10px] border-[2px] border-[solid] divide-gray-600 rounded-[5px] outline-none ">
+          </div>
+          <div>
+            <p>شماره موبایل:</p>
+            <input id="edit-phone"
+              class="w-[100%] h-[100%] px-[10px] border-[2px] border-[solid] divide-gray-600 rounded-[5px] outline-none ">
+          </div>
+        </div>
+        <button class="w-full bg-pink-600 text-center" onclick="submitEditClickHandler()">ویرایش</button>
+      </div>
+    </div>
+  </div>
+  <div id="modal-wrapper-remove" 
+  class="hidden bg-white w-[100vw] h-[100vh]  fixed  top-0 left-0  bg-opacity-[80%] items-center justify-center bg-white">
+    <div class="w-full max-w-[300px] h-[100px] bg-white rounded-[8px] flex flex-col items-center gap-[16px]">
+      <div class="  flex justify-between items-center gap">
+        <p class=" text-center">آیا از حذف کاربر اطمینان دارید؟</p>
+      </div>   
+      <div class="flex justify-center items-center gap-[8px]">
+        <button class="w-[70px] h-[30px] bg-pink-600  p-[1px] text-center" onclick="notRemove()">خیر</button>
+        <button class="w-[70px] h-[30px] bg-pink-600  p-[1px] text-center" onclick="yesRemove()">بله</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="./script.js"></script>
+</body>
+
+</html>
